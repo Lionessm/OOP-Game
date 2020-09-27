@@ -25,17 +25,27 @@ class Phrase {
 
             currentLetterLi.textContent = currentLetter;
             phraseUl.appendChild(currentLetterLi);
-            console.log()
         }
-    };
+        };
 
+    checkLetter(letter) {
+        const currentPhrase = this.phrase.split('');
+        for ( let i = 0; i < currentPhrase.length; i++) {
+            let currentPhraseLetter = currentPhrase[i];
+            if (currentPhraseLetter === letter) {
+               return true;
+            }
+        }
+    }
 
-    checkLetter() {
-
-    };
-
-    showMatchedLetter() {
-
+    showMatchedLetter(letter) {
+       let matchedLetters = document.getElementsByClassName("hide letter " + letter);
+       for (let i = 0; i < matchedLetters.length; i++) {
+           let currentLetter = matchedLetters[i];
+           if (currentLetter.textContent === letter) {
+               currentLetter.className = "show letter " + letter;
+           }
+       }
     };
 }
 
