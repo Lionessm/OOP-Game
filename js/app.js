@@ -7,3 +7,4 @@
 document.getElementById('btn__reset').addEventListener( 'click' , (e) => {
         game.startGame();
     });
+

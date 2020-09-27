@@ -26,7 +26,28 @@ class Game {
         this.activePhrase = this.getRandomPhrase();
         this.activePhrase.addPhraseToDisplay();
     }
-    handleInteraction() {
+    checkForWin() {
+        let unmatchedLetters = document.getElementsByClassName("hide letter");
+        if (unmatchedLetters.length === 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    removeLife() {
+        let lives = document.getElementsByClassName('tries');
+        this.missed += 1
+        function changeImage(img) {
+            lives[this.missed].src = img.src.replace("images/liveHeart.png", "images/lostHeart.png");
+        }
+        if (this.missed === 5) {
+            gameOver();
+        }
+
+
+    }
+    gameOver() {
 
     }
 
