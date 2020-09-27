@@ -20,6 +20,12 @@ class Game {
         let randomPhraseIndex = getRandomInt(5);
         return this.phrases[randomPhraseIndex];
     }
+    startGame() {
+        const overlayScreen = document.getElementById("overlay");
+        overlayScreen.style.display = "none";
+        this.activePhrase = this.getRandomPhrase();
+        this.activePhrase.addPhraseToDisplay();
+    }
 
 }
 
