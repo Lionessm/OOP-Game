@@ -59,6 +59,9 @@ class Game {
         }
     }
 
+    handleInteraction(button) {
+        console.log(button);
+    }
 }
 
 const game = new Game();
