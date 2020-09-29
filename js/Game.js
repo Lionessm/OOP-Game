@@ -36,19 +36,27 @@ class Game {
     }
 
     removeLife() {
-        let lives = document.getElementsByClassName('tries');
-        this.missed += 1
-        function changeImage(img) {
-            lives[this.missed].src = img.src.replace("images/liveHeart.png", "images/lostHeart.png");
-        }
-        if (this.missed === 5) {
-            gameOver();
-        }
+        let allLives = document.querySelectorAll('li.tries img');
+        allLives[this.missed].src = 'images/lostHeart.png';
 
-
+        if (this.missed === 4) {
+            this.gameOver();
+        }
+        this.missed += 1;
     }
-    gameOver() {
 
+    gameOver(gameWon) {
+        const overlayScreen = document.getElementById("overlay");
+        overlayScreen.style.display = 'block';
+        const gameOverElementH1 = document.getElementById('game-over-message');
+
+        if (gameWon === true){
+            gameOverElementH1.textContent = "Congrats! You've won!";
+            overlayScreen.classList.replace('start', 'win');
+        } else {
+            gameOverElementH1.textContent = "Oops, you lost. Better luck next time!";
+            overlayScreen.classList.replace('start', 'lose');
+        }
     }
 
 }
