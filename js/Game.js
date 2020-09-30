@@ -117,6 +117,7 @@ class Game {
     }
 }
 
+// Declaring the phrases and adding them to the phrases array in the constructor.
 const game = new Game();
 const phrase = new Phrase('Break a leg');
 const phrase2 = new Phrase('Success');
