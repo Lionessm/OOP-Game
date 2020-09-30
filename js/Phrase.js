@@ -29,19 +29,30 @@ class Phrase {
         };
 
     checkLetter(letter) {
+        console.log("amintrat in checkLetter")
+        console.log("letter pricipala :" + letter)
         const currentPhrase = this.phrase.split('');
+        console.log("curentPhrase :" + currentPhrase);
         for ( let i = 0; i < currentPhrase.length; i++) {
+            console.log('i ' + i);
+            console.log("am intrat in for de la checkletter")
             let currentPhraseLetter = currentPhrase[i];
+            console.log('currentPhraseLetter ' + currentPhraseLetter);
             if (currentPhraseLetter === letter) {
+                console.log("letter " + letter);
+                console.log("facem return true");
                return true;
             }
         }
+        console.log("facem return false");
+        return false;
+
     }
 
     showMatchedLetter(letter) {
-        let matchedLetters = document.getElementsByClassName("hide letter " + letter);
-        for (let i = 0; i < matchedLetters.length; i++) {
-           let currentLetter = matchedLetters[i];
+        const hiddenLettersOnScreen = document.getElementsByClassName("letter " + letter);
+        for (let i = 0; i < hiddenLettersOnScreen.length; i++) {
+           let currentLetter = hiddenLettersOnScreen[i];
            if (currentLetter.textContent === letter) {
                currentLetter.className = "show letter " + letter;
            }
