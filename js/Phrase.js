@@ -1,13 +1,12 @@
-/* Treehouse FSJS Techdegree
- * Project 4 - OOP Game App
- * Phrase.js */
 
 class Phrase {
     constructor(phrase) {
        this.phrase = phrase.toLowerCase();
     }
 
-
+    // Split phrase in new array; iterate through current phrase letter;
+    // Give class name space if there is a space or hide letter for letter;
+    // Add text content of letter to li element and append the li elements to the ul (div : "phrase")
     addPhraseToDisplay() {
         const currentPhrase = this.phrase.split('');
         const phraseDiv = document.getElementById("phrase");
@@ -28,6 +27,7 @@ class Phrase {
         }
         };
 
+    // Check if selected letter matches a letter in the phrase.
     checkLetter(letter) {
         const currentPhrase = this.phrase.split('');
         for ( let i = 0; i < currentPhrase.length; i++) {
@@ -40,6 +40,7 @@ class Phrase {
 
     }
 
+    // Reveal matched letters. Add class name of 'show' to all elements that match the selected letter.
     showMatchedLetter(letter) {
         const hiddenLettersOnScreen = document.getElementsByClassName("letter " + letter);
         for (let i = 0; i < hiddenLettersOnScreen.length; i++) {
