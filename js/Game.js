@@ -62,11 +62,15 @@ class Game {
 
     handleInteraction(button) {
         button.disabled = true;
-        if (phrase.checkLetter(button.textContent) !== true){
+        if (phrase.checkLetter(button.textContent) === false){
             button.className = 'wrong';
             game.removeLife();
+        } else {
+            button.className = 'chosen';
+            phrase.showMatchedLetter(button.textContent);
         }
     }
+
 }
 
 const game = new Game();

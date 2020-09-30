@@ -39,13 +39,13 @@ class Phrase {
     }
 
     showMatchedLetter(letter) {
-       let matchedLetters = document.getElementsByClassName("hide letter " + letter);
-       for (let i = 0; i < matchedLetters.length; i++) {
+        let matchedLetters = document.getElementsByClassName("hide letter " + letter);
+        for (let i = 0; i < matchedLetters.length; i++) {
            let currentLetter = matchedLetters[i];
            if (currentLetter.textContent === letter) {
                currentLetter.className = "show letter " + letter;
            }
-       }
+        }
     };
 }
 
