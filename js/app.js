@@ -9,7 +9,7 @@ document.getElementById('btn__reset').addEventListener( 'click' , (e) => {
 });
 
 
-let keyElements = document.querySelectorAll('button');
+let keyElements = document.querySelectorAll('button.key');
 
 for (let i = 0; i < keyElements.length; i++) {
     keyElements[i].addEventListener('click', (e) => {

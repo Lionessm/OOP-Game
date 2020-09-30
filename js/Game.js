@@ -43,6 +43,7 @@ class Game {
             this.gameOver();
         }
         this.missed += 1;
+        console.log('removed')
     }
 
     gameOver(gameWon) {
@@ -60,7 +61,11 @@ class Game {
     }
 
     handleInteraction(button) {
-        console.log(button);
+        button.disabled = true;
+        if (phrase.checkLetter(button.textContent) !== true){
+            button.className = 'wrong';
+            game.removeLife();
+        }
     }
 }
 
