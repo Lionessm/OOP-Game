@@ -1,18 +1,15 @@
-/* Treehouse FSJS Techdegree
- * Project 4 - OOP Game App
- * Game.js */
-
 class Game {
     constructor() {
         this.missed = 0;
         this.phrases = [];
         this.activePhrase = null;
     }
-
+    // Adds phrase to the phrases array.
     createPhrases(phrase) {
         this.phrases.push(phrase)
     }
 
+    // Gets a phrase and returns it.
     getRandomPhrase( ) {
         function getRandomInt(max) {
             return Math.floor(Math.random() * Math.floor(max));
@@ -20,6 +17,8 @@ class Game {
         let randomPhraseIndex = getRandomInt(5);
         return this.phrases[randomPhraseIndex];
     }
+
+    // Hides screen overlay, calls a new phrase and displays it.
     startGame() {
         this.gameReset();
         const overlayScreen = document.getElementById("overlay");
@@ -27,6 +26,7 @@ class Game {
         this.activePhrase = this.getRandomPhrase();
         this.activePhrase.addPhraseToDisplay();
     }
+    // Checks if player revealed all the letters in the current phrase.
     checkForWin() {
         let unmatchedLetters = document.getElementsByClassName("hide letter");
         if (unmatchedLetters.length === 0){
@@ -36,6 +36,8 @@ class Game {
         }
     }
 
+    // Changes heart image on scoreboard with lost heart and increments the missed property.
+    // If player has 4 missed guesses, call GameOver().
     removeLife() {
         let allLives = document.querySelectorAll('li.tries img');
         allLives[this.missed].src = 'images/lostHeart.png';
@@ -46,6 +48,7 @@ class Game {
         this.missed += 1;
     }
 
+    // Display original start overlay, and update h1 element with winning or losing message and color.
     gameOver(gameWon) {
         const overlayScreen = document.getElementById("overlay");
         overlayScreen.style.display = 'block';
@@ -60,6 +63,8 @@ class Game {
         }
     }
 
+    // Update keys className and disables them when clicked, checks if player revealed all the letters in phrase - checkForWin();
+    // If player revealed all letters, call gmeOver(true) that displays winning message and color.
     handleInteraction(button) {
         button.disabled = true;
         if (this.activePhrase.checkLetter(button.textContent) === false){
@@ -75,7 +80,9 @@ class Game {
         }
     }
 
+    // Reset game
     gameReset() {
+        // Remove all 'li' elements from previous game.
         const phraseDiv = document.getElementById("phrase");
         const phraseUl = phraseDiv.firstElementChild;
 
@@ -95,10 +102,13 @@ class Game {
             phraseUl.removeChild(currentLi);
         }
 
+        // Enable keys and set className to key (original class).
         keyElements.forEach( element => {
           element.disabled = false;
           element.className = 'key';
         })
+
+        // Reset lives image to 'liveHeart.png' and reset 'missed' guesses to 0.
         let allLives = document.querySelectorAll('li.tries img');
         allLives.forEach(heart => {
             heart.src = 'images/liveHeart.png';
