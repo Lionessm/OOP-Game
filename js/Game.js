@@ -21,6 +21,7 @@ class Game {
         return this.phrases[randomPhraseIndex];
     }
     startGame() {
+        this.gameReset();
         const overlayScreen = document.getElementById("overlay");
         overlayScreen.style.display = "none";
         this.activePhrase = this.getRandomPhrase();
@@ -43,7 +44,6 @@ class Game {
             this.gameOver();
         }
         this.missed += 1;
-        console.log('removed')
     }
 
     gameOver(gameWon) {
@@ -53,10 +53,10 @@ class Game {
 
         if (gameWon === true){
             gameOverElementH1.textContent = "Congrats! You've won!";
-            overlayScreen.classList.replace('start', 'win');
+            overlayScreen.className ='win';
         } else {
             gameOverElementH1.textContent = "Oops, you lost. Better luck next time!";
-            overlayScreen.classList.replace('start', 'lose');
+            overlayScreen.className = 'lose';
         }
     }
 
@@ -75,6 +75,36 @@ class Game {
         }
     }
 
+    gameReset() {
+        const phraseDiv = document.getElementById("phrase");
+        const phraseUl = phraseDiv.firstElementChild;
+
+        let liHTMLCollection = document.getElementsByClassName("letter");
+        let liHtmlCollectionSpaceClass = document.getElementsByClassName("space");
+
+        let liSpace = Array.from(liHtmlCollectionSpaceClass);
+        let li = Array.from(liHTMLCollection);
+
+        for ( let i = 0; i < li.length; i++) {
+            let currentLi = li[i];
+            phraseUl.removeChild(currentLi);
+        }
+
+        for  ( let i = 0; i < liSpace.length; i++) {
+            let currentLi = liSpace[i];
+            phraseUl.removeChild(currentLi);
+        }
+
+        keyElements.forEach( element => {
+          element.disabled = false;
+          element.className = 'key';
+        })
+        let allLives = document.querySelectorAll('li.tries img');
+        allLives.forEach(heart => {
+            heart.src = 'images/liveHeart.png';
+        })
+        this.missed = 0;
+    }
 }
 
 const game = new Game();
